@@ -1,0 +1,179 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignement</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <div class="title">
+    <h1>Height and weight in Brazil</h1>
+  </div>
+
+  <div class="explanation">
+    <p>In Brazil, if you are a man, military conscription is mandatory when you turn 18.
+      Thus, every year, hundred of thousands of young men show up in a military unit in a given day at 7am.
+      There you are measured and weighted (among other things, the whole process takes the whole morning).
+      Although the process is deeply annoying, it generates millions of lines of data.
+      With it, I will try to answer an old question:</p>
+    <p id="question"> <b>Is there a relation between height and weight? </b></p>
+    <p>For this, I downloaded and analyzed 10 datasets with information from the conscription process, one for each year between 2008 and 2017.
+      To make the analysis scientific valid, I only used information about men with 18 years old (in some cases, you can delay your participation in the process. These cases were ignored).</p>
+  </div>
+
+  <div class="explanation">
+    <p>Let's start simple: a <b>scatter plot </b>. Used to check correlations, it is the
+    perfect way to start analyzing the information we have, no? One axis will be the height, the other the weight. If the variables have a correlation, the dots should form more or less a line. It is not the case here.
+    Each dot is a 18 year old boy that woke up really early in a given day of the selected year. For the visualization, a random sample of 5000 persons is selected because otherwise, there would be far to many dots (more than 300.000)</p>
+  </div>
+
+  <div id="divgraph1" class="graph">
+    <form name="Scatter">
+      <select name="Year" id="YearFirstGraph">
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+      </select>
+      <input type="button" onclick="updateFirstGraph()" value="Submit" class="submit_button">
+    </form>
+  </div>
+
+  <div class="explanation">
+    <p>You probably do not know this, but the height and the weight are not the only information in the database.
+    There is a third variable: the state where the person lives (Brazil has states, like the USA). A <b>bar chart</b>
+    allow us to compare the average weight and height per state and year to see how it varies geographically.</p>
+  </div>
+
+  <div id="divgraph2" class="graph">
+    <form name="Bar">
+      <select name="Year" id="YearSecondGraph">
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+      </select>
+      <select name="Variable" id="VariableSecondGraph">
+        <option value="AVG_WEIGHT">Weight</option>
+        <option value="AVG_HEIGHT">Height</option>
+      </select>
+      <input type="button" onclick="updateSecondGraph()" value="Submit" class="submit_button">
+    </form>
+  </div>
+
+  <div class="explanation">
+    <p>If you are still paying attention after all this time, a valid point that you could make is
+    that the previous chart compared averages and averages can be misleading. An example: the average temperature of the Sahara desert is 30 degrees celsius.
+    To avoid this trap, let's check the maximun and minimum value for each Brazilian state. For this, we use a <b>dot plot</b>. Excited?</p>
+  </div>
+
+  <div id="divgraph3" class="graph">
+    <form name="Dot Plot">
+      <select name="Year" id="YearThirdGraph">
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+      </select>
+      <select name="Variable" id="VariableThirdGraph">
+        <option value="WEIGHT">Weight</option>
+        <option value="HEIGHT">Height</option>
+      </select>
+      <input type="button" onclick="updateThirdGraph()" value="Submit" class="submit_button">
+    </form>
+  </div>
+
+  <div class="explanation">
+    <p>Did the average height and weight changed over the analyzed period? You can go back and
+    generate a chart for each year and then compare the value for each state. Or you can just check the next graph, a <b> line chart</b>.
+    they are quite handy to show the change of a variable over time and that is exaclty what we want to analyze.</p>
+    <p> The national evolution of the average will appear in green. All other lines are the evolution for one state. Hover on it with your mouse to have more information. </p>
+  </div>
+
+  <div id="divgraph4" class="graph">
+    <form name="Line Chart">
+      <select name="Variable" id="VariableFourthGraph">
+        <option value="weight">Weight</option>
+        <option value="height">Height</option>
+      </select>
+      <input type="button" onclick="updateFourthGraph()" value="Submit" class="submit_button">
+    </form>
+  </div>
+
+  <div class="explanation">
+    <p>At last (and at least!), another important variable when analyzing anything is the size of the sample.
+    The smaller it is the bigger the impact of an outlier in the average. Let's use a <b> stacked column </b> to
+    compare the size of the sample of a state with the size of the total sample (wich in this case is called Brazil).</p>
+  </div>
+
+  <div id="divgraph5" class="graph">
+    <form name="Stacked Column">
+      <select name="Year" id="YearFifthGraph">
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+      </select>
+      <select name="State" id="VariableFifthGraph">
+        <option value="AL">AL</option>
+        <option value="AC">AC</option>
+        <option value="AM">AM</option>
+        <option value="AP">AP</option>
+        <option value="BA">BA</option>
+        <option value="CE">CE</option>
+        <option value="DF">DF</option>
+        <option value="ES">ES</option>
+        <option value="GO">GO</option>
+        <option value="MA">MA</option>
+        <option value="MG">MG</option>
+        <option value="MS">MS</option>
+        <option value="MT">MT</option>
+        <option value="PA">PA</option>
+        <option value="PB">PB</option>
+        <option value="PE">PE</option>
+        <option value="PI">PI</option>
+        <option value="PR">PR</option>
+        <option value="RJ">RJ</option>
+        <option value="RN">RN</option>
+        <option value="RO">RO</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>
+        <option value="SC">SC</option>
+        <option value="SE">SE</option>
+        <option value="SP">SP</option>
+        <option value="TO">TO</option>
+      </select>
+      <input type="button" onclick="updateFifthGraph()" value="Submit" class="submit_button">
+    </form>
+  </div>
+  <script src="js/firstgraph.js"></script>
+  <script src="js/secondgraph.js"></script>
+  <script src="js/thirdgraph.js"></script>
+  <script src="js/fourthgraph.js"></script>
+  <script src="js/fifthgraph.js"></script>
+</body>
