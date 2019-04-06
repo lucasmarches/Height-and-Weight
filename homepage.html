@@ -5,6 +5,82 @@
     <link rel="stylesheet" href="css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <style type="text/css" media="screen">
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+    @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+    body {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .title {
+      font-family: 'Ubuntu', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      color: #449adb
+    }
+
+    .explanation {
+      font-family: 'Roboto', sans-serif;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    div.tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 2px;
+      font-family: 'Roboto', sans-serif;
+      font: 14px sans-serif;
+      background: #f2f7fb;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .label {
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px
+    }
+
+    .label_bar {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px
+    }
+
+    #question {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25em;
+    }
+
+    #graph1, #graph2, #graph3, #graph4, #graph5 {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.5rem;
+    }
+
+
+    .grid .tick {
+      stroke: lightgrey;
+      opacity: 0.1;
+    }
+    .grid path {
+      stroke-width: 0;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 2px;
+    }
+  </style>
 </head>
 <body>
   <div class="title">
